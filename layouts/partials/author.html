@@ -1,0 +1,23 @@
+<!-- Link the u-author link inside h-entry with the u-url in the external h-card -->
+{{ $page_author := .Params.author }}
+{{ with .Site.Author.name }}
+    {{ $site_author := . }}
+    {{ with $page_author }}
+        {{ $author_type := (printf "%T" .) }}
+        {{ $author_is_slice := (eq "[]string" $author_type) }}
+        {{ if $author_is_slice }}
+            {{ range . }}
+                {{ if (eq $site_author .) }}
+                    <a href="{{ $.Site.BaseURL }}" class="u-author hide">{{ . }}</a>
+                {{ end }}
+            {{ end }}
+        {{ else }}
+            {{ if (eq $site_author .) }}
+                <a href="{{ $.Site.BaseURL }}" class="u-author hide">{{ . }}</a>
+            {{ end }}
+        {{ end }}
+    {{ else }}
+        <!-- Assume the site author to be the post author if post author not set. -->
+        <a href="{{ $.Site.BaseURL }}" class="u-author hide">{{ . }}</a>
+    {{ end }}
+{{ end }}

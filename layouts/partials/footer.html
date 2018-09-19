@@ -1,0 +1,53 @@
+{{ partialCached "social.html" . }}
+{{ if .Site.Params.source.ox_hugo }}
+    <p class="generated no-text-decoration">
+        Generated using
+        {{ with .Site.Params.source.org_dir }}
+            {{ with $.Params.creator }}
+                {{ . | replaceRE "ox-hugo" `<a href="https://github.com/kaushalmodi/ox-hugo"><code>ox-hugo</code></a>` | safeHTML }}
+            {{ else }}
+                the <a href="https://github.com/kaushalmodi/ox-hugo"><code class="nobr">ox-hugo</code></a> package for Emacs/Org-mode
+            {{ end }} +
+        {{ end }}
+        <a href="https://gitlab.com/kaushalmodi/hugo-theme-refined"><code class="nobr">hugo-theme-refined</code></a> +
+        {{ $hugo_version := .Hugo.Version }}
+        <span class="nobr">
+            {{ with .Hugo.CommitHash }}
+                Hugo {{ . | replaceRE "^[0-9a-f]{7,}" `<a href="https://github.com/gohugoio/hugo/commit/${0}">` | replaceRE ":chroma-([0-9a-f]{7,})" "" | safeHTML -}}{{ $hugo_version }}
+                {{- printf "</a>" | safeHTML -}}.
+            {{ else }}
+                Hugo {{ $hugo_version }}.
+            {{ end }}
+        </span>
+        {{ with .File.Path }}
+            <br />
+            <span class="nobr">&mdash; <code>ox-hugo</code>-generated</span> Markdown
+            <a href="{{ $.Site.Params.source.url }}/raw/master/{{ $.Site.Params.source.md_dir }}/{{ . }}">source</a>
+            of this page.
+        {{ end }}
+    </p>
+{{ end }}
+<p>
+    {{ with .Site.Params.footer }}
+        {{ . | safeHTML }}
+    {{ end }}
+</p>
+
+{{ partial "badges.html" . }}
+
+<!-- Init responsive-nav.js -->
+<!-- https://report-uri.com/home/hash/
+     'sha256-AICaU7ez1zEahkwGOinOvyDtJHKvnJAO607ClgXh4xg='
+-->
+<script type="application/javascript">var nav=responsiveNav("#nav");</script>
+
+<!-- Fragmentions - https://github.com/chapmanu/fragmentions
+     Fragmentioner - https://github.com/kartikprabhu/fragmentioner
+-->
+<!-- With this, links like this will work!
+     https://scripter.co/hugo-leaf-and-branch-bundles/##Hugo%20considers%20the%20first%20directory%20level
+-->
+{{ $fragmention_js := resources.Get "js/libs/fragmentions/wrapper.js" | minify | fingerprint }}
+<script defer src="{{ $fragmention_js.RelPermalink }}"></script>
+
+{{ partialCached "h-card.html" . }}
