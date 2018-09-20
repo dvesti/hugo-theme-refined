@@ -2,7 +2,7 @@
 # http://chriskempson.com/projects/base16/.
 [red]
   default_color = "#ac4142"
-  light_color = "rgba(172, 65, 66, 0.2)" # Same as the --theme-color #ac4142, but in decimal, with 20% opacity
+  light_color = "rgba(255, 65, 66, 0.5)" # Same as the --theme-color #ac4142, but in decimal, with 20% opacity
 
 [orange]
   default_color = "#d28445"

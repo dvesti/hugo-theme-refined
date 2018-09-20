@@ -131,9 +131,7 @@
     <!-- Enable HTTP/2 Push -->
     <link rel="preload" href="{{ $fa_js.RelPermalink }}" as="script">
 
-    {{ with .Params.mathjax }}
-        {{ partialCached "mathjax.html" $ }}
-    {{ end }}
+    {{ partialCached "mathjax.html" $ }}
 
     <!-- Favicons -->
     <!-- Generated using https://realfavicongenerator.net/ -->

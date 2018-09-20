@@ -10,5 +10,8 @@
         {{ with .Site.GetPage "/search" }}
             <li><a class="{{ if eq $page_relpermalink .RelPermalink }}active{{ end }}" href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{ end }}
+        {{ with .Site.GetPage "/aboutme" }}
+            <li><a class="{{ if eq $page_relpermalink .RelPermalink }}active{{ end }}" href="{{ .Permalink }}">aboutme</a></li>
+        {{ end }}
     </ul>
 </nav>
