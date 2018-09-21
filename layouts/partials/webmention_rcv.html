@@ -7,14 +7,14 @@
     {{ $domain := .domain | strings.TrimRight "/" }}
     {{ with .webmention }}
         <h2 id="webmentions">Webmentions&nbsp;<a class="headline-hash no-text-decoration" href="#webmentions">#</a></h2>
-        {{ $.Scratch.Set "__wm_target_links" (slice (printf "target[]=%s%s" $domain $page.RelPermalink)) }}
+        {{ $.Scratch.Set "__wm_target_links" (slice (printf "target=%s%s" $domain $page.RelPermalink)) }}
         <!-- https://github.com/aaronpk/webmention.io#find-links-to-multiple-pages
              Check for Webmentions sent to aliases too. -->
         {{ range $page.Params.aliases }}
             <!-- Assume Hugo uglyURLs to be disabled.
                  So put the trailing "/" after the alias if not already there. -->
             {{ $alias := . | replaceRE "[^/]$" "${0}/" }}
-            {{ $.Scratch.Add "__wm_target_links" (printf "target[]=%s%s" $domain $alias) }}
+            {{ $.Scratch.Add "__wm_target_links" (printf "target=%s%s" $domain $alias) }}
         {{ end }}
         {{ $wm_targets := delimit ($.Scratch.Get "__wm_target_links") "&" }}
         {{ $num_mentions_max := 200 }}
