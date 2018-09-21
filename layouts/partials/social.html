@@ -1,7 +1,7 @@
 <ul class="social no-text-decoration">
     {{ range .Param "social" }}
         <li>
-            <a href="{{ .link }}" title="{{ .name }}">
+            <a href="{{ .link }}" target="_blank" title="{{ .name }}">
                 <!-- Example value of Params.social with "svg" key in site config.toml:
                      [[Params.social]]
                      name = "Mastodon"
