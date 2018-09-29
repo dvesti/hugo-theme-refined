@@ -19,6 +19,9 @@
         {{ end }}
     </title>
 
+    {{ if .Site.Params.seo.webmaster_verifications.google }}
+        <meta name="google-site-verification" content="{{ .Site.Params.seo.webmaster_verifications.google }}" />
+    {{ end }}    
     <!-- {{ template "_internal/google_analytics_async.html" . }} -->
     {{ partialCached "googleanalytics.html" . }}
 
