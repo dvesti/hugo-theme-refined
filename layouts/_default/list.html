@@ -7,11 +7,11 @@
         <data class="u-url" value="{{ .Permalink }}"></data>
         {{ partial "author.html" . }}
 
-        {{ if (eq .File.Path "") }} <!-- Regular section -->
-            <h1 class="p-name">Posts in ‘{{ .Dir | default .Section }}’</h1>
+        {{ if (eq .File.Dir "") }} <!-- Regular section -->
+            <h1 class="p-name">Posts in ‘{{ .File.Dir | default .Section }}’</h1>
         {{ else }}                  <!-- Branch bundle based section -->
             <h1 class="p-name">{{ .Title }}</h1>
-            <h2>Posts in ‘{{ .Dir | default .Section }}’</h2>
+            <h2>Posts in ‘{{ .File.Dir | default .Section }}’</h2>
         {{ end }}
 
         {{ if not .Params.notoc }}

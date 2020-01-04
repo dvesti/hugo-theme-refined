@@ -12,7 +12,7 @@
     <meta name="referrer" content="no-referrer">
 
     <title>
-        {{ if eq .URL "/" }}
+        {{ if eq .RelPermalink "/" }}
             {{ .Site.Title }} ❚
         {{ else }}
             {{ .Title }} ❚ {{ .Site.Title }}
@@ -158,11 +158,4 @@
     {{ range .AlternativeOutputFormats -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink (printf "%s for %s" (.Name | title) $.Site.Title) | safeHTML }}
     {{ end -}}
-
-    <!-- Hugo info -->
-    <!-- https://stackoverflow.com/a/10534167/1219634 -->
-    <!-- https://w3c.github.io/html/single-page.html#the-meta-element -->
-    {{ printf `<meta name="hugo-build-date" content="%s"/>` .Hugo.BuildDate | safeHTML }}
-    {{ printf `<meta name="hugo-commit-hash" content="%s"/>` .Hugo.CommitHash | safeHTML }}
-    {{ .Hugo.Generator }}
 </head>

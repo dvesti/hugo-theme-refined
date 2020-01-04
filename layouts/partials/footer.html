@@ -10,21 +10,6 @@
             {{ end }} +
         {{ end }}
         <a href="https://gitlab.com/kaushalmodi/hugo-theme-refined"><code class="nobr">hugo-theme-refined</code></a> +
-        {{ $hugo_version := .Hugo.Version }}
-        <span class="nobr">
-            {{ with .Hugo.CommitHash }}
-                Hugo {{ . | replaceRE "^[0-9a-f]{7,}" `<a href="https://github.com/gohugoio/hugo/commit/${0}">` | replaceRE ":chroma-([0-9a-f]{7,})" "" | safeHTML -}}{{ $hugo_version }}
-                {{- printf "</a>" | safeHTML -}}.
-            {{ else }}
-                Hugo {{ $hugo_version }}.
-            {{ end }}
-        </span>
-        {{ with .File.Path }}
-            <br />
-            <span class="nobr">&mdash; <code>ox-hugo</code>-generated</span> Markdown
-            <a href="{{ $.Site.Params.source.url }}/raw/master/{{ $.Site.Params.source.md_dir }}/{{ . }}">source</a>
-            of this page.
-        {{ end }}
     </p>
 {{ end }}
 <p>
